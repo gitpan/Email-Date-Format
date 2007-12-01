@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Email-Date-Format
-version:             1.000
+version:             1.001
 abstract:            produce RFC 822 date strings
 license:             perl
 generated_by:        ExtUtils::MakeMaker version 6.36_01
