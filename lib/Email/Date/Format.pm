@@ -1,65 +1,17 @@
 use 5.006;
 use strict;
 use warnings;
-
 package Email::Date::Format;
+{
+  $Email::Date::Format::VERSION = '1.003';
+}
+# ABSTRACT: produce RFC 2822 date strings
 
-our $VERSION = '1.002';
 our @EXPORT_OK = qw[email_date email_gmdate];
 
-use Exporter;
-BEGIN { our @ISA = 'Exporter' }
+use Exporter 5.57 'import';
 use Time::Local ();
 
-=head1 NAME
-
-Email::Date::Format - produce RFC 2822 date strings
-
-=head1 SYNOPSIS
-
-  use Email::Date::Format qw(email_date);
-  
-  my $header = email_date($date->epoch);
-  
-  Email::Simple->create(
-    header => [
-      Date => $header,
-    ],
-    body => '...',
-  );
-
-=head1 DESCRIPTION
-
-This module provides a simple means for generating an RFC 2822 compliant
-datetime string.  (In case you care, they're not RFC 822 dates, because they
-use a four digit year, which is not allowed in RFC 822.)
-
-=head2 FUNCTIONS
-
-=over 4
-
-=item email_date
-
-  my $date = email_date; # now
-  my $date = email_date( time - 60*60 ); # one hour ago
-
-C<email_date> accepts an epoch value, such as the one returned by C<time>.
-It returns a string representing the date and time of the input, as
-specified in RFC 2822. If no input value is provided, the current value
-of C<time> is used.
-
-C<format_date> is exported only if requested.
-
-=item email_gmdate
-
-  my $date = email_gmdate;
-
-C<email_gmdate> is identical to C<email_date>, but it will return a string
-indicating the time in Greenwich Mean Time, rather than local time.
-
-C<format_gmdate> is exported only if requested.
-
-=cut
 
 sub _tz_diff {
   my ($time) = @_;
@@ -106,23 +58,77 @@ BEGIN {
 
 __END__
 
+=pod
+
+=head1 NAME
+
+Email::Date::Format - produce RFC 2822 date strings
+
+=head1 VERSION
+
+version 1.003
+
+=head1 SYNOPSIS
+
+  use Email::Date::Format qw(email_date);
+  
+  my $header = email_date($date->epoch);
+  
+  Email::Simple->create(
+    header => [
+      Date => $header,
+    ],
+    body => '...',
+  );
+
+=head1 DESCRIPTION
+
+This module provides a simple means for generating an RFC 2822 compliant
+datetime string.  (In case you care, they're not RFC 822 dates, because they
+use a four digit year, which is not allowed in RFC 822.)
+
+=head1 FUNCTIONS
+
+=head2 email_date
+
+  my $date = email_date; # now
+  my $date = email_date( time - 60*60 ); # one hour ago
+
+C<email_date> accepts an epoch value, such as the one returned by C<time>.
+It returns a string representing the date and time of the input, as
+specified in RFC 2822. If no input value is provided, the current value
+of C<time> is used.
+
+C<format_date> is exported only if requested.
+
+=head2 email_gmdate
+
+  my $date = email_gmdate;
+
+C<email_gmdate> is identical to C<email_date>, but it will return a string
+indicating the time in Greenwich Mean Time, rather than local time.
+
+C<format_gmdate> is exported only if requested.
+
+=head1 AUTHORS
+
+=over 4
+
+=item *
+
+Casey West
+
+=item *
+
+Ricardo SIGNES <rjbs@cpan.org>
+
 =back
 
-=head1 PERL EMAIL PROJECT
+=head1 COPYRIGHT AND LICENSE
 
-This module is maintained by the Perl Email Project
+This software is copyright (c) 2004 by Casey West.
 
-L<http://emailproject.perl.org/wiki/Email::Date::Format>
-
-=head1 AUTHOR
-
-Ricardo SIGNES, <F<rjbs@cpan.org>>.
-
-Adapted from Email::Date, by Casey West.
-
-=head1 COPYRIGHT
-
-Copyright (c) 2007, Ricarod SIGNES.  This module is free software; you can
-redistribute it and/or modify it under the same terms as Perl itself.
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut
