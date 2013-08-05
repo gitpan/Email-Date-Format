@@ -3,7 +3,7 @@ use strict;
 use warnings;
 package Email::Date::Format;
 {
-  $Email::Date::Format::VERSION = '1.003';
+  $Email::Date::Format::VERSION = '1.004';
 }
 # ABSTRACT: produce RFC 2822 date strings
 
@@ -66,7 +66,7 @@ Email::Date::Format - produce RFC 2822 date strings
 
 =head1 VERSION
 
-version 1.003
+version 1.004
 
 =head1 SYNOPSIS
 

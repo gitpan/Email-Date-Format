@@ -46,16 +46,16 @@
    "release_status" : "stable",
    "resources" : {
       "bugtracker" : {
-         "web" : "https://github.com/rjbs/email-date-format/issues"
+         "web" : "https://github.com/rjbs/Email-Date-Format/issues"
       },
-      "homepage" : "https://github.com/rjbs/email-date-format",
+      "homepage" : "https://github.com/rjbs/Email-Date-Format",
       "repository" : {
          "type" : "git",
-         "url" : "https://github.com/rjbs/email-date-format.git",
-         "web" : "https://github.com/rjbs/email-date-format"
+         "url" : "https://github.com/rjbs/Email-Date-Format.git",
+         "web" : "https://github.com/rjbs/Email-Date-Format"
       }
    },
-   "version" : "1.003",
+   "version" : "1.004",
    "x_Dist_Zilla" : {
       "perl" : {
          "version" : "5.019002"

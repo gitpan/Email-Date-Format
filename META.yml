@@ -23,10 +23,10 @@ requires:
   strict: 0
   warnings: 0
 resources:
-  bugtracker: https://github.com/rjbs/email-date-format/issues
-  homepage: https://github.com/rjbs/email-date-format
-  repository: https://github.com/rjbs/email-date-format.git
-version: 1.003
+  bugtracker: https://github.com/rjbs/Email-Date-Format/issues
+  homepage: https://github.com/rjbs/Email-Date-Format
+  repository: https://github.com/rjbs/Email-Date-Format.git
+version: 1.004
 x_Dist_Zilla:
   perl:
     version: 5.019002
