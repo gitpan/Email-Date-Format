@@ -2,16 +2,54 @@ use 5.006;
 use strict;
 use warnings;
 package Email::Date::Format;
-{
-  $Email::Date::Format::VERSION = '1.004';
-}
 # ABSTRACT: produce RFC 2822 date strings
-
+$Email::Date::Format::VERSION = '1.005';
 our @EXPORT_OK = qw[email_date email_gmdate];
 
 use Exporter 5.57 'import';
 use Time::Local ();
 
+#pod =head1 SYNOPSIS
+#pod
+#pod   use Email::Date::Format qw(email_date);
+#pod   
+#pod   my $header = email_date($date->epoch);
+#pod   
+#pod   Email::Simple->create(
+#pod     header => [
+#pod       Date => $header,
+#pod     ],
+#pod     body => '...',
+#pod   );
+#pod
+#pod =head1 DESCRIPTION
+#pod
+#pod This module provides a simple means for generating an RFC 2822 compliant
+#pod datetime string.  (In case you care, they're not RFC 822 dates, because they
+#pod use a four digit year, which is not allowed in RFC 822.)
+#pod
+#pod =func email_date
+#pod
+#pod   my $date = email_date; # now
+#pod   my $date = email_date( time - 60*60 ); # one hour ago
+#pod
+#pod C<email_date> accepts an epoch value, such as the one returned by C<time>.
+#pod It returns a string representing the date and time of the input, as
+#pod specified in RFC 2822. If no input value is provided, the current value
+#pod of C<time> is used.
+#pod
+#pod C<email_date> is exported only if requested.
+#pod
+#pod =func email_gmdate
+#pod
+#pod   my $date = email_gmdate;
+#pod
+#pod C<email_gmdate> is identical to C<email_date>, but it will return a string
+#pod indicating the time in Greenwich Mean Time, rather than local time.
+#pod
+#pod C<email_gmdate> is exported only if requested.
+#pod
+#pod =cut
 
 sub _tz_diff {
   my ($time) = @_;
@@ -60,13 +98,15 @@ __END__
 
 =pod
 
+=encoding UTF-8
+
 =head1 NAME
 
 Email::Date::Format - produce RFC 2822 date strings
 
 =head1 VERSION
 
-version 1.004
+version 1.005
 
 =head1 SYNOPSIS
 
@@ -99,7 +139,7 @@ It returns a string representing the date and time of the input, as
 specified in RFC 2822. If no input value is provided, the current value
 of C<time> is used.
 
-C<format_date> is exported only if requested.
+C<email_date> is exported only if requested.
 
 =head2 email_gmdate
 
@@ -108,7 +148,7 @@ C<format_date> is exported only if requested.
 C<email_gmdate> is identical to C<email_date>, but it will return a string
 indicating the time in Greenwich Mean Time, rather than local time.
 
-C<format_gmdate> is exported only if requested.
+C<email_gmdate> is exported only if requested.
 
 =head1 AUTHORS
 
